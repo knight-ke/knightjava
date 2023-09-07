@@ -1,7 +1,10 @@
 package com.knight.aop;
 
+import com.knight.exception.CustomeException;
+import com.knight.exception.ModelViewException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +38,16 @@ public class ModelViewAspect {
     public void afterThrowable(Throwable e){
         log.error("切面发生了异常： ", e);
         if (e instanceof CustomeException){
-            throw ModelViewException.transfer((CustomeException) e);
+            log.error("CustomeException");
+//            throw ModelViewException.transfer((CustomeException) e);
         }
+    }
+    @Around("pointcut()")
+    public Object around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+
+        log.info("around");
+        Object[] objects = proceedingJoinPoint.getArgs();
+        Object result = proceedingJoinPoint.proceed(objects);
+        return result;
     }
 }

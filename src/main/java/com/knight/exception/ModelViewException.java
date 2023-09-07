@@ -1,4 +1,4 @@
-package com.knight.aop;
+package com.knight.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
