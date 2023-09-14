@@ -18,13 +18,13 @@ import java.util.Locale;
  * 版本: 4.0
  * 创建日期: 2020/9/18 10:25
  */
-@Configuration
+//@Configuration
 public class LocalConfig {
 
     /**
      * 默认解析器 其中locale表示默认语言
      */
-    @Bean
+//    @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
         localeResolver.setDefaultLocale(Locale.CHINA);
@@ -34,7 +34,7 @@ public class LocalConfig {
     /**
      * 默认拦截器 其中lang表示切换语言的参数名
      */
-    @Bean
+//    @Bean
     public WebMvcConfigurer localeInterceptor() {
         return new WebMvcConfigurer() {
             @Override
