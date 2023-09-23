@@ -35,7 +35,8 @@ public class LocalUtil
         try
         {
 //            log.info(RequestContextUtils.getLocaleResolver());
-            return messageSource.getMessage(msgKey, null, LocaleContextHolder.getLocale());
+            return messageSource.getMessage(
+                    msgKey, null, LocaleContextHolder.getLocale());
         }
         catch (Exception e)
         {
