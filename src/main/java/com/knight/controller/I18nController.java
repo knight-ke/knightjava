@@ -12,11 +12,12 @@ public class I18nController {
 
     @GetMapping("getmsg")
     public String language() {
+        log.info("getmsg");
         String message = LocalUtil.get("user.appname");  //调用
         return message;
     }
 
-    @GetMapping("getmsg1")
+    @GetMapping("putmsg")
     public String lan1(@RequestParam String lang) {
         log.info("lang: " + lang);
         String message = LocalUtil.get("user.appname");  //调用
