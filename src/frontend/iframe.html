@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 2 iFrame Example</title>
+    <!-- 引入Vue.js -->
+<!--    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>-->
+    <script src="./vue.js"></script>
+    <style>
+        /* 美化样式，可选 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #app {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        #iframe-container {
+            position: relative;
+            width: 50%;
+            height: 50%;
+            border: 2px solid #ccc;
+        }
+        #iframe-container.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            scrolling: "no";
+        }
+        #toggle-fullscreen {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div id="iframe-container" :class="{ 'fullscreen': isFullscreen }">
+        <div id="toggle-fullscreen" @click="toggleFullscreen">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+                <path v-if="!isFullscreen" fill="#000000" d="M5,10H19V14H5"></path>
+                <path v-else fill="#000000" d="M7,7V17H17V7"></path>
+            </svg>
+        </div>
+        <iframe id="myIframe"
+                src="http://192.168.0.20:8080/guacamole/#/client/MQBjAG15c3Fs"
+                frameborder="0" width="100%" height="100%"
+                scolling="yes"></iframe>
+    </div>
+</div>
+
+<script>
+        new Vue({
+            el: '#app',
+            data: {
+                isFullscreen: false
+            },
+            methods: {
+                toggleFullscreen() {
+                    this.isFullscreen = !this.isFullscreen;
+                    iframe = document.getElementById('myIframe');
+                    <!-- iframe.contentWindow.location.reload(); // 重新加载 iframe 内容 -->
+                    iframe.scrolling = "no";  // 有效规避放大窗口时guacd服务的bug
+                    iframe.focus();     // 解决放大窗口后无法输入的问题，实质为失去了焦点
+
+                }
+            }
+        });
+    </script>
+</body>
+</html>
