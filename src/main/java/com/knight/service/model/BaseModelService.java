@@ -1,11 +1,10 @@
-package com.knight.service;
+package com.knight.service.model;
 
 import com.knight.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BaseModelService {
 
-    @Autowired
     Mapper mapper;
 
     public boolean isParentDiagram(String diagramId){

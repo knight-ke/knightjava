@@ -1,12 +1,11 @@
-package com.knight.service.impl;
+package com.knight.service.model.impl;
 
-import com.knight.service.BaseModelService;
+import com.knight.service.model.BaseModelService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Service
 @Slf4j
-public class ComponetService extends BaseModelService {
+public class Componet extends BaseModelService {
 
     @Override
     public void delEntity() {
